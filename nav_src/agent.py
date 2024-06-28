@@ -162,10 +162,11 @@ class NavAgent(BaseAgent):
                 temperature=config.temperature,
                 model_name=config.llm_model_name,
             )
-        elif config.llm_model_name == 'llama-2-13b':
-            from LLMs.Langchain_llama import Custom_Llama
-            ckpt_dir = "LLMs/llama/llama-2-13b"
-            tokenizer_path = "LLMs/llama/tokenizer.model"
+
+        elif config.llm_model_name == 'llama-3-8B-Instruct':
+            from LLMs.Langchain_llama3 import Custom_Llama
+            ckpt_dir = "LLMs/llama3/Meta-Llama-3-8B-Instruct"
+            tokenizer_path = "LLMs/llama3/Meta-Llama-3-8B-Instruct/tokenizer.model"
             self.llm = Custom_Llama.from_model_id(
                 temperature=config.temperature,
                 ckpt_dir = ckpt_dir,
@@ -174,6 +175,19 @@ class NavAgent(BaseAgent):
                 max_gen_len = 500,
                 max_batch_size = 1,
             )
+
+        # elif config.llm_model_name == 'llama-2-13b':
+        #     from LLMs.Langchain_llama import Custom_Llama
+        #     ckpt_dir = "LLMs/llama/llama-2-13b"
+        #     tokenizer_path = "LLMs/llama/tokenizer.model"
+        #     self.llm = Custom_Llama.from_model_id(
+        #         temperature=config.temperature,
+        #         ckpt_dir = ckpt_dir,
+        #         tokenizer_path = tokenizer_path,
+        #         max_seq_len = 8000,
+        #         max_gen_len = 500,
+        #         max_batch_size = 1,
+        #     )
         # elif config.llm_model_name == 'Vicuna-v1.5-13b':
         #     from LLMs.Langchain_Vicuna import Custom_Vicuna
         #     self.llm = Custom_Vicuna.from_config(

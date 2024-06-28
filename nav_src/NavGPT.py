@@ -93,6 +93,12 @@ def valid_from_file(args, val_envs):
             print(loss_str)
 
 def main():
+    # Set environment variables
+    os.environ['RANK'] = '0'
+    os.environ['WORLD_SIZE'] = '1'
+    os.environ['MASTER_ADDR'] = 'localhost'
+    os.environ['MASTER_PORT'] = '12355'
+
     args = parse_args()
 
     val_envs = build_dataset(args)
